@@ -1,0 +1,82 @@
+version: "3.8"
+
+services:
+  # Backend service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: quran-id-backend
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=development
+      - QURAN_PORT=4000
+      - QURAN_CLIENT_ID=${QURAN_CLIENT_ID}
+      - QURAN_CLIENT_SECRET=${QURAN_CLIENT_SECRET}
+      - QURAN_ENDPOINT=${QURAN_ENDPOINT:-https://apis-prelive.quran.foundation/content/api/v4}
+      - QURAN_TOKEN_ENDPOINT=${QURAN_TOKEN_ENDPOINT:-https://prelive-oauth2.quran.foundation/oauth2/token}
+    volumes:
+      - ./backend/src:/app/src:ro
+      - ./backend/package.json:/app/package.json:ro
+      - backend_node_modules:/app/node_modules
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://localhost:4000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - quran-network
+
+  # Frontend service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: quran-id-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://backend:4000
+    volumes:
+      - ./frontend/src:/app/src:ro
+      - ./frontend/public:/app/public:ro
+      - ./frontend/package.json:/app/package.json:ro
+      - frontend_node_modules:/app/node_modules
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://localhost:3000', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - quran-network
+
+# Named volumes for node_modules
+volumes:
+  backend_node_modules:
+  frontend_node_modules:
+
+# Custom network for service communication
+networks:
+  quran-network:
+    driver: bridge

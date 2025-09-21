@@ -40,7 +40,88 @@ Before running this project, make sure you have the following installed:
 - **npm** or **yarn** package manager
 - **Git**
 
-## 🚀 Getting Started
+## � Docker Deployment
+
+The project is fully containerized with Alpine Linux for minimal image sizes and optimal performance.
+
+### Quick Start with Docker
+
+```bash
+# Clone the repository
+git clone https://github.com/theosakram/quran-id.git
+cd quran-id
+
+# Create environment file
+cp backend/.env.example backend/.env
+# Edit backend/.env with your Quran Foundation API credentials
+
+# Start with Docker Compose (development)
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop services
+docker-compose down
+```
+
+### Environment Setup
+
+Create `backend/.env` file:
+
+```env
+QURAN_CLIENT_ID=your_client_id_here
+QURAN_CLIENT_SECRET=your_client_secret_here
+QURAN_ENDPOINT=https://apis-prelive.quran.foundation/content/api/v4
+QURAN_TOKEN_ENDPOINT=https://prelive-oauth2.quran.foundation/oauth2/token
+QURAN_PORT=4000
+```
+
+### Docker Commands
+
+```bash
+# Development (with hot reload)
+docker-compose up -d
+
+# Production build
+docker-compose -f docker-compose.prod.yml up -d
+
+# Build specific service
+docker-compose build backend
+docker-compose build frontend
+
+# Scale services
+docker-compose up -d --scale backend=2
+
+# View service logs
+docker-compose logs backend
+docker-compose logs frontend
+
+# Enter container shell
+docker-compose exec backend sh
+docker-compose exec frontend sh
+
+# Clean up everything
+docker-compose down -v --rmi all
+```
+
+### Image Sizes (Alpine Linux)
+
+- **Backend**: ~150MB (Node.js + Express.js)
+- **Frontend**: ~200MB (Node.js + Next.js)
+- **Total**: ~350MB for complete application
+
+### Architecture
+
+```mermaid
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│   Nginx     │    │  Frontend   │    │   Backend   │
+│   (80/443)  ├────┤   (3000)    ├────┤   (4000)    │
+│   Alpine    │    │   Alpine    │    │   Alpine    │
+└─────────────┘    └─────────────┘    └─────────────┘
+```
+
+## �🚀 Getting Started
 
 ### 1. Clone the Repository
 
@@ -128,7 +209,7 @@ The frontend will be available at `http://localhost:3000`
 
 ## 📁 Project Structure
 
-```
+```text
 quran-id/
 ├── frontend/                 # Next.js frontend application
 │   ├── src/
@@ -205,24 +286,6 @@ The application integrates with the [Quran Foundation API](https://apis-prelive.
 - **Features**: Chapter names, verse counts, revelation information
 - **Caching**: Implemented with TanStack Query for optimal performance
 
-## 🎨 Customization
-
-### Adding New Languages
-
-1. Add language constants in `frontend/src/constants/index.ts`
-2. Create translation files in `frontend/public/locales/[lang]/`
-3. Update the language switcher in the header component
-4. Add translations in `frontend/src/utils/surahTranslations.ts`
-
-### Theming
-
-The application uses Chakra UI v3 with a custom theme located in `frontend/src/components/theme/`. You can customize:
-
-- Colors and color palettes
-- Typography scales
-- Component styles
-- Responsive breakpoints
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -236,6 +299,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-**Theophany Sakra Muhammad** - [@theosakram](https://github.com/theosakram)
+### Theophany Sakra Muhammad
 
-Project Link: [https://github.com/theosakram/quran-id](https://github.com/theosakram/quran-id)
+- 🐙 GitHub: [@theosakram](https://github.com/theosakram)
+- 💼 LinkedIn: [theosakram](https://www.linkedin.com/in/theosakram/)
+- 📧 Email: [wyrdhn@gmail.com](mailto:wyrdhn@gmail.com)
+
+**Project Repository**: [quran-id](https://github.com/theosakram/quran-id)
