@@ -1,0 +1,10 @@
+{
+  "appName": "Quran ID",
+  "search": "Cari",
+  "settings": "Pengaturan",
+  "language": "Bahasa",
+  "english": "English",
+  "indonesian": "Indonesia",
+  "noResultsFound": "Tidak ada surat yang ditemukan untuk \"{{query}}\"",
+  "showing": "Menampilkan {{count}} dari {{total}} surat"
+}

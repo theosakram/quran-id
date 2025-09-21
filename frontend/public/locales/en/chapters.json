@@ -1,0 +1,10 @@
+{
+  "title": "Quran Chapters",
+  "availableCount": "{{count}} chapters available",
+  "searchPlaceholder": "Search chapters...",
+  "verses": "verses",
+  "verses_one": "verse",
+  "verses_other": "verses",
+  "makkah": "Makkah",
+  "madinah": "Madinah"
+}

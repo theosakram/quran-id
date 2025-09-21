@@ -1,0 +1,10 @@
+{
+  "title": "Surat Al-Quran",
+  "availableCount": "{{count}} surat tersedia",
+  "searchPlaceholder": "Cari surat...",
+  "verses": "ayat",
+  "verses_one": "ayat",
+  "verses_other": "ayat",
+  "makkah": "Makkah",
+  "madinah": "Madinah"
+}

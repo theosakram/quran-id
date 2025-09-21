@@ -1,0 +1,10 @@
+{
+  "appName": "Quran ID",
+  "search": "Search",
+  "settings": "Settings",
+  "language": "Language",
+  "english": "English",
+  "indonesian": "Indonesian",
+  "noResultsFound": "No chapters found for \"{{query}}\"",
+  "showing": "Showing {{count}} of {{total}} chapters"
+}
