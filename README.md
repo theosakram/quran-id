@@ -40,7 +40,7 @@ Before running this project, make sure you have the following installed:
 - **npm** or **yarn** package manager
 - **Git**
 
-## � Docker Deployment
+## 🐳 Docker Deployment
 
 The project is fully containerized with Alpine Linux for minimal image sizes and optimal performance.
 
@@ -121,40 +121,60 @@ docker-compose down -v --rmi all
 └─────────────┘    └─────────────┘    └─────────────┘
 ```
 
-## �🚀 Getting Started
+## 🚀 Getting Started
 
-### 1. Clone the Repository
+You can run this project in two ways: using Docker (recommended) or manually with Node.js.
+
+## Docker Setup (Recommended)
+
+The easiest way to get started:
+
+```bash
+# Clone the repository
+git clone https://github.com/theosakram/quran-id.git
+cd quran-id
+
+# Create environment file
+cp backend/.env.example backend/.env
+# Edit backend/.env with your Quran Foundation API credentials
+
+# Start with Docker Compose
+docker-compose up -d
+
+# Access the application
+# Frontend: http://localhost:3000
+# Backend: http://localhost:4000
+```
+
+## Manual Setup
+
+If you prefer to run without Docker:
+
+### Prerequisites
+
+- Node.js 18+ and npm/yarn
+- Git
+
+### 1. Clone and Setup
 
 ```bash
 git clone https://github.com/theosakram/quran-id.git
 cd quran-id
 ```
 
-### 2. Install Dependencies
-
-#### Frontend Setup
-
-```bash
-cd frontend
-yarn install
-# or
-npm install
-```
-
-#### Backend Setup
+### 2. Backend Setup
 
 ```bash
 cd backend
 yarn install
-# or
-npm install
+# or npm install
+
+# Create environment file
+cp .env.example .env
+# Edit .env with your Quran Foundation API credentials
 ```
 
-### 3. Environment Configuration
-
-#### Backend Environment
-
-Create a `.env` file in the `backend` directory:
+Create `backend/.env`:
 
 ```env
 QURAN_CLIENT_ID=your_client_id_here
@@ -164,48 +184,29 @@ QURAN_TOKEN_ENDPOINT=https://prelive-oauth2.quran.foundation/oauth2/token
 QURAN_PORT=4000
 ```
 
-*Note: You'll need to obtain client credentials from the Quran Foundation API.*
-
-#### Frontend Environment (Optional)
-
-Copy the example environment file and modify as needed:
-
 ```bash
-cd frontend
-cp .env.example .env.local
-```
-
-Then edit `.env.local`:
-
-```env
-NEXT_PUBLIC_API_URL=http://localhost:4000
-```
-
-*Note: The frontend defaults to `http://localhost:4000` if no environment variable is set.*
-
-### 4. Run the Application
-
-#### Start Backend Server
-
-```bash
-cd backend
+# Start backend development server
 yarn dev
-# or
-npm run dev
+# or npm run dev
 ```
 
-The backend will be available at `http://localhost:4000`
-
-#### Start Frontend Development Server
+### 3. Frontend Setup
 
 ```bash
+# Open new terminal
 cd frontend
+yarn install
+# or npm install
+
+# Start frontend development server
 yarn dev
-# or
-npm run dev
+# or npm run dev
 ```
 
-The frontend will be available at `http://localhost:3000`
+### 4. Access Application
+
+- **Frontend**: [http://localhost:3000](http://localhost:3000)
+- **Backend API**: [http://localhost:4000](http://localhost:4000)
 
 ## 📁 Project Structure
 
