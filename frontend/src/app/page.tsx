@@ -1,7 +1,7 @@
 "use client";
 
-import { ChaptersContainer } from "@/components/containers/ChaptersContainer";
-import { Header } from "@/components/custom/Header";
+import { ChaptersContainer } from "@/features/chapters/components/ChaptersContainer";
+import { Header } from "@/shared/components/layout/Header";
 
 export default function Home() {
   return (
