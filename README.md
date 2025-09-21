@@ -5,7 +5,6 @@ A modern web application for reading and searching the Quran with Indonesian tra
 ## 🌟 Features
 
 - **Multilingual Support**: English and Indonesian interface with i18n
-- **Chapter Search**: Search through all 114 chapters by name (Arabic, English, Indonesian)
 - **Responsive Design**: Optimized for desktop, tablet, and mobile devices
 - **Modern UI**: Built with Chakra UI v3 for beautiful and accessible components
 - **Fast Performance**: Server-side rendering with Next.js 15 and React 19
